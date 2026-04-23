@@ -25,7 +25,20 @@ Mô hình được huấn luyện trên tập dữ liệu giả lập (Synthetic
 | **Độ trễ dự báo (Latency)** | 0.48 ms/dòng |
 | **Inference Throughput** | 2.73 ms / 1000 dòng |
 
-## 4. Kết luận
+
+## 4. Dẫn chứng kỹ thuật triển khai
+
+Dưới đây là các bằng chứng thực tế về việc triển khai và chạy mô hình trên hạ tầng AWS:
+
+### 📸 Dẫn chứng 1: Kết quả chạy Script Benchmark
+Ghi lại quá trình khởi tạo dữ liệu giả lập và huấn luyện mô hình LightGBM trên instance CPU.
+![Benchmark Output](benchmark.py.png)
+
+### 📸 Dẫn chứng 2: Cấu trúc file kết quả JSON
+Minh chứng cho việc trích xuất các thông số kỹ thuật (AUC, Latency, Accuracy) ra định dạng JSON.
+![Benchmark JSON](benchmark.json.png)
+
+## 5. Kết luận
 Dù không sử dụng GPU cho các mô hình ngôn ngữ lớn (LLM), bài Lab đã chứng minh khả năng triển khai hạ tầng Cloud AI phức tạp và vận hành các mô hình Machine Learning thực tế trên nền tảng AWS một cách hiệu quả và tiết kiệm chi phí.
 
 ---
