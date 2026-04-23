@@ -31,5 +31,5 @@ Dù không sử dụng GPU cho các mô hình ngôn ngữ lớn (LLM), bài Lab 
 ---
 *Lưu ý:* 
 1. Toàn bộ tài nguyên đã được xóa bằng `terraform destroy` ngay sau khi thu thập kết quả để tránh phát sinh chi phí không mong muốn.
-2. **Ảnh chụp Billing:** Do AWS Billing thường cập nhật chậm (sau vài giờ), tôi sẽ cập nhật bổ sung ảnh chụp màn hình chi phí vào kho lưu trữ này ngay khi hệ thống hiển thị dữ liệu mới.
+2. **Ảnh chụp Billing:** Do AWS Billing thường cập nhật chậm, tôi sẽ cập nhật bổ sung ảnh chụp màn hình chi phí vào kho lưu trữ này ngay khi hệ thống hiển thị dữ liệu mới.
 
