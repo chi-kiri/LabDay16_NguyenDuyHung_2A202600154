@@ -172,15 +172,7 @@ resource "aws_instance" "bastion" {
   tags = { Name = "AI-Bastion-Host" }
 }
 
-# 5. GPU Instance
-data "aws_ami" "deep_learning" {
-  most_recent = true
-  owners      = ["amazon"]
-  filter {
-    name   = "name"
-    values = ["Deep Learning Base OSS Nvidia Driver GPU AMI (Ubuntu 22.04)*"]
-  }
-}
+# 5. CPU Instance (thay thế GPU cho lab không có quota GPU)
 
 resource "aws_iam_role" "ai_role" {
   name = "ai-inference-role-${random_id.id.hex}"
@@ -205,24 +197,23 @@ resource "aws_iam_instance_profile" "ai_profile" {
 }
 
 resource "aws_instance" "gpu_node" {
-  ami                    = data.aws_ami.deep_learning.id
-  instance_type          = "g4dn.xlarge" 
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t3.micro"
   subnet_id              = aws_subnet.private[0].id
   vpc_security_group_ids = [aws_security_group.gpu_sg.id]
   key_name               = aws_key_pair.lab_key.key_name
   iam_instance_profile   = aws_iam_instance_profile.ai_profile.name
 
   root_block_device {
-    volume_size = 150 
+    volume_size = 8
     volume_type = "gp3"
   }
 
   user_data = templatefile("${path.module}/user_data.sh", {
-    hf_token = var.hf_token
     model_id = var.model_id
   })
 
-  tags = { Name = "AI-Inference-Node" }
+  tags = { Name = "AI-Inference-Node-FreeTier" }
 }
 
 # 6. Load Balancer
@@ -241,13 +232,13 @@ resource "aws_lb_target_group" "ai_tg" {
   vpc_id   = aws_vpc.ai_vpc.id
 
   health_check {
-    path                = "/health"
+    path                = "/"
     protocol            = "HTTP"
     matcher             = "200"
     interval            = 30
-    timeout             = 5
+    timeout             = 10
     healthy_threshold   = 2
-    unhealthy_threshold = 2
+    unhealthy_threshold = 5
   }
 }
 
