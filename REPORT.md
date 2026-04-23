@@ -29,4 +29,7 @@ Mô hình được huấn luyện trên tập dữ liệu giả lập (Synthetic
 Dù không sử dụng GPU cho các mô hình ngôn ngữ lớn (LLM), bài Lab đã chứng minh khả năng triển khai hạ tầng Cloud AI phức tạp và vận hành các mô hình Machine Learning thực tế trên nền tảng AWS một cách hiệu quả và tiết kiệm chi phí.
 
 ---
-*Lưu ý: Toàn bộ tài nguyên đã được xóa bằng `terraform destroy` ngay sau khi thu thập kết quả.*
+*Lưu ý:* 
+1. Toàn bộ tài nguyên đã được xóa bằng `terraform destroy` ngay sau khi thu thập kết quả để tránh phát sinh chi phí không mong muốn.
+2. **Ảnh chụp Billing:** Do AWS Billing thường cập nhật chậm (sau vài giờ), tôi sẽ cập nhật bổ sung ảnh chụp màn hình chi phí vào kho lưu trữ này ngay khi hệ thống hiển thị dữ liệu mới.
+
